@@ -69,24 +69,24 @@ class TasksViewController: UITableViewController {
             isDone(true)
         }
         
-        if task.isComplete {
-            let undoneAction = UIContextualAction(style: .normal, title: "undone") { _, _, isDone in
-                StorageManager.shared.done(task, isComplete: false)
-                tableView.reloadSections(IndexSet(0...1), with: .automatic)
-                isDone(true)
-            }
-            editAction.backgroundColor = .orange
-            undoneAction.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-            return UISwipeActionsConfiguration(actions: [undoneAction, editAction, deleteAction])
-        } else {
+        if indexPath.section == 0 {
             let doneAction = UIContextualAction(style: .normal, title: "done") { _, _, isDone in
                 StorageManager.shared.done(task, isComplete: true)
-                tableView.reloadSections(IndexSet(0...1), with: .automatic)
+                tableView.reloadSections([0,1], with: .automatic)
                 isDone(true)
             }
             editAction.backgroundColor = .orange
             doneAction.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
             return  UISwipeActionsConfiguration(actions: [doneAction, editAction, deleteAction])
+        } else {
+            let undoneAction = UIContextualAction(style: .normal, title: "undone") { _, _, isDone in
+                StorageManager.shared.done(task, isComplete: false)
+                tableView.reloadSections([0,1], with: .automatic)
+                isDone(true)
+            }
+            editAction.backgroundColor = .orange
+            undoneAction.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+            return UISwipeActionsConfiguration(actions: [undoneAction, editAction, deleteAction])
         }
         
     }

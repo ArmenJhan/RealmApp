@@ -42,13 +42,13 @@ class StorageManager {
             taskList.name = newValue
         }
     }
-
-    func done(_ taskList: TaskList) {
+    
+    func done(_ taskList: TaskList, isComplete: Bool) {
         write {
-            taskList.tasks.setValue(true, forKey: "isComplete")
+            taskList.tasks.setValue(isComplete, forKey: "isComplete")
         }
     }
-
+    
     // MARK: - Tasks
     func save(_ task: String, withNote note: String, to taskList: TaskList, completion: (Task) -> Void) {
         write {
@@ -74,11 +74,8 @@ class StorageManager {
     
     func done(_ task: Task, isComplete: Bool) {
         write {
-            if task.isComplete{
-                task.setValue(isComplete, forKey: "isComplete")
-            } else {
-                task.setValue(isComplete, forKey: "isComplete")
-            }
+            task.setValue(isComplete, forKey: "isComplete")
+            
         }
     }
     
