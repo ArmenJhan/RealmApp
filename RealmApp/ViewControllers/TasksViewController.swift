@@ -73,7 +73,7 @@ class TasksViewController: UITableViewController {
             let undoneAction = UIContextualAction(style: .normal, title: "undone") { _, _, isDone in
                 StorageManager.shared.done(task, isComplete: false)
                 tableView.reloadSections(IndexSet(0...1), with: .automatic)
-                isDone(false)
+                isDone(true)
             }
             editAction.backgroundColor = .orange
             undoneAction.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)

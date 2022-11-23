@@ -76,6 +76,8 @@ class StorageManager {
         write {
             if task.isComplete{
                 task.setValue(isComplete, forKey: "isComplete")
+            } else {
+                task.setValue(isComplete, forKey: "isComplete")
             }
         }
     }
